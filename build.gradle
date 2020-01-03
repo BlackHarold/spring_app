@@ -1,0 +1,36 @@
+plugins {
+    id 'war'
+}
+
+group 'home.blackharold'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url 'http://repo1.maven.org/maven2' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.2.2.RELEASE'
+    // https://mvnrepository.com/artifact/javax.servlet/jstl
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    // https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api
+    compile group: 'javax.servlet.jsp.jstl', name: 'jstl-api', version: '1.2'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
+   /* compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.1.0.Final'
+    // https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator-annotation-processor
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.1.0.Final'
+    // https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator-cdi
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator-cdi', version: '6.1.0.Final'
+    // https://mvnrepository.com/artifact/javax.el/javax.el-api
+    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.1-b06'*/
+    // https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging
+    compile group: 'org.jboss.logging', name: 'jboss-logging', version: '3.4.1.Final'
+    // https://mvnrepository.com/artifact/javax.validation/validation-api
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+}
