@@ -1,5 +1,7 @@
 package home.blackharold.entity;
 
+import home.blackharold.utils.validation.CourseCode;
+
 import javax.validation.constraints.*;
 
 public class Customer {
@@ -18,6 +20,9 @@ public class Customer {
     @Pattern(regexp = "^[0-9]{6}", message = "only 6 digits")
     private String postalCode;
 
+    @CourseCode()
+    private String courseCode;
+
     public String getFirstName() {
         return firstName;
     }
@@ -32,7 +37,7 @@ public class Customer {
 
     public void setLastName(String lastName) {
 //        lastName = lastName.replaceAll(" ", "");
-        System.out.println("|"+lastName+"|");
+        System.out.println("|" + lastName + "|");
         this.lastName = lastName;
     }
 
@@ -50,5 +55,13 @@ public class Customer {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }

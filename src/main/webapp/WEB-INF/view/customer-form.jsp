@@ -8,9 +8,10 @@
     <style>.error {
         color: red
     }
-        .err {
-            color: rebeccapurple;
-        }
+
+    .err {
+        color: rebeccapurple;
+    }
     </style>
 </head>
 <body>
@@ -31,6 +32,10 @@
     <br>
     Post code: <form:input path="postalCode"/>
     <form:errors path="postalCode" cssClass="err"/>
+    <br>
+    <br>
+    Course code: <form:input path="courseCode"/>
+    <form:errors path="courseCode" cssClass="error"/>
     <br>
     <br>
     <input type="submit" value="Submit"/>

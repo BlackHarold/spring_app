@@ -38,6 +38,8 @@ public class CustomerController {
 //        log input data
         System.out.println(customer.getFirstName() + " " + customer.getLastName());
 
+        System.out.println(bindingResult);
+
         if (bindingResult.hasErrors()) return "customer-form";
         else return "customer-confirmation";
     }
