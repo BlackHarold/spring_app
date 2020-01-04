@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.nio.charset.Charset;
-
 //-Dfile.encoding=UTF-8
 
 @Controller
@@ -28,9 +26,6 @@ public class StudentController {
 
         //log the input data
         System.out.println(student.getFirstName() + " " + student.getLastName() + " " + student.getFavoriteLanguage());
-
-
-
         return "student-confirmation";
     }
 }
