@@ -1,11 +1,11 @@
-package home.blackharold.jdbc;
+package home.blackharold.jdbc.test.student;
 
 import home.blackharold.entity.StudentEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class CreateStudentTest {
+public class ReadStudentTest {
 
     public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class CreateStudentTest {
 //            use the session object to save Java object
 
             System.out.println("start transaction....");
-            StudentEntity student = new StudentEntity("Paul", "Wall", "p.wall@friendface.ru");
+            StudentEntity student = new StudentEntity("Pavel", "Morozov", "p.morozov@friendface.ru");
 //            create transaction
             session.beginTransaction();
 //            save the student object
@@ -25,6 +25,20 @@ public class CreateStudentTest {
 //            commit transaction
             session.getTransaction().commit();
             System.out.println("transaction commited....");
+
+//            new code
+//            find out the object's id: primary key
+            System.out.println("find student by id: " + student.getId());
+//            now get a new session and start transaction
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+//            retrieve student based on the id: primary key
+            System.out.println("Getting student with id: " + student.getId());
+            StudentEntity myStudent = session.get(StudentEntity.class, student.getId());
+            System.out.println("Get complete: " + myStudent);
+//            commit transaction
+            session.getTransaction().commit();
+            System.out.println("done!");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

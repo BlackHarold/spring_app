@@ -1,4 +1,4 @@
-package home.blackharold.jdbc;
+package home.blackharold.jdbc.test.student;
 
 import home.blackharold.entity.StudentEntity;
 import org.hibernate.Session;
