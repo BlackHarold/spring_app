@@ -4,10 +4,9 @@ import home.blackharold.entity.Instructor;
 import home.blackharold.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class ReturnInstructorByDetail {
+public class DeleteDetailOnly {
     public static void main(String[] args) {
 
         SessionFactory factory = new Configuration()
@@ -17,27 +16,28 @@ public class ReturnInstructorByDetail {
                 .buildSessionFactory();
 
         Session session = factory.getCurrentSession();
-        Transaction transaction = session.getTransaction();
 
         try {
-//            use the session object to save Java object
+
+//            use the session object to delete Java object
             System.out.println("start transaction....");
-            transaction.begin();
 
-            int id = 1111;
-            InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
+//            start transaction
+            session.beginTransaction();
 
-//            print detail
-            System.out.println("instructorDetail: " + instructorDetail);
-//            print the associated instructor
-            System.out.println("the associated instructor: " + instructorDetail.getInstructor());
+//            delete the instructor object. Also this will save the details object
+//            because of CascadeType.ALL
+            InstructorDetail instructorDetail = session.get(InstructorDetail.class, 2);
+            instructorDetail.getInstructor().setInstructorDetail(null);
 
-//            end of transaction
-            transaction.commit();
+            session.delete(instructorDetail);
+
+//            commit transaction
+            session.getTransaction().commit();
+            System.out.println("transaction commited....");
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Exception: " + e.getMessage());
+            System.out.println(e.getMessage());
         } finally {
 //            close all threads
             session.close();
