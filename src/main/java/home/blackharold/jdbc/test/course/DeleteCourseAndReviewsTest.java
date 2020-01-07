@@ -9,15 +9,15 @@ import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteCourseTest {
+public class DeleteCourseAndReviewsTest {
     public static void main(String[] args) {
 
 
         SessionFactory sessionFactory = new Configuration().configure("hibernate/hibernate.cfg.xml")
                 .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Review.class)
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
-                .addAnnotatedClass(Review.class)
                 .buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();
@@ -25,10 +25,18 @@ public class DeleteCourseTest {
         try {
             session.getTransaction().begin();
 
-            session.delete(session.get(Course.class, 12));
+//            get the course
+            int id = 12;
+            Course course = session.get(Course.class, id);
+
+//            print the course
+            System.out.println(course);
+
+//            print the course reviews
+            System.out.println(course.getReviews());
 
             session.getTransaction().commit();
-
+            System.out.println("Done!");
 
         } catch (SessionException e) {
         } finally {

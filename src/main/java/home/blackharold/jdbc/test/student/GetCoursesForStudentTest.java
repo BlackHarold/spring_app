@@ -1,32 +1,39 @@
-package home.blackharold.jdbc.test.course;
+package home.blackharold.jdbc.test.student;
 
-import home.blackharold.entity.Course;
-import home.blackharold.entity.Instructor;
-import home.blackharold.entity.InstructorDetail;
-import home.blackharold.entity.Review;
+import home.blackharold.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DeleteCourseTest {
+import java.util.Arrays;
+import java.util.List;
+
+public class GetCoursesForStudentTest {
     public static void main(String[] args) {
 
-
+//        create factory sesions
         SessionFactory sessionFactory = new Configuration().configure("hibernate/hibernate.cfg.xml")
-                .addAnnotatedClass(Course.class)
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
+                .addAnnotatedClass(Course.class)
                 .addAnnotatedClass(Review.class)
+                .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
-
+//        create session
         Session session = sessionFactory.getCurrentSession();
 
         try {
+//            start transaction
             session.getTransaction().begin();
 
-            session.delete(session.get(Course.class, 12));
+            Student student = session.get(Student.class, 2);
 
+            List<Course> courses = student.getCourses();
+            System.out.println("All courses of the student id=" + student.getId() + ": " + courses);
+
+
+//            commit transtaction
             session.getTransaction().commit();
 
 
